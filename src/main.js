@@ -15,6 +15,17 @@ function createWindow() {
   //Create Menu
   const template = [
     {
+      label: 'File',
+      submenu: [
+        {
+          label: 'Open File'
+        },
+        {
+          label: 'Open Folder'
+        }
+      ]
+    },
+    {
       label: 'Edit',
       submenu: [
         { role: 'undo' },
@@ -78,7 +89,7 @@ function createWindow() {
     });
 
     // Edit menu
-    template[1].submenu.push(
+    template[2].submenu.push(
       { type: 'separator' },
       {
         label: 'Speech',
@@ -87,7 +98,7 @@ function createWindow() {
     );
 
     // Window menu
-    template[3].submenu = [
+    template[4].submenu = [
       { role: 'close' },
       { role: 'minimize' },
       { role: 'zoom' },
