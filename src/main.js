@@ -183,4 +183,5 @@ function openFile() {
   const file = files[0];
   const fileContent = fs.readFileSync(file).toString();
   console.log(fileContent);
+  console.log(file);
 }
