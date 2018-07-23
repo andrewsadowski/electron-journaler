@@ -8,7 +8,11 @@ let mainWindow;
 
 function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({ width: 800, height: 600 });
+  mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    titleBarStyle: 'hidden'
+  });
 
   // and load the index.html of the app.
   mainWindow.loadURL('http://localhost:3000');
@@ -184,5 +188,5 @@ function openFile() {
   const fileContent = fs.readFileSync(file).toString();
 
   //Send file content to renderer
-  mainWindow.webContents.send('new-file', fileContent)
+  mainWindow.webContents.send('new-file', fileContent);
 }
