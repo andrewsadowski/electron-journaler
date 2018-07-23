@@ -37,7 +37,9 @@ class App extends Component {
             name="markdown_editor"
             value={this.state.loadedFile}
           />
-          <Markdown>{this.state.loadedFile}</Markdown>
+          <RenderedWindow>
+            <Markdown>{this.state.loadedFile}</Markdown>
+          </RenderedWindow>
         </Split>
       </div>
     );
@@ -49,4 +51,24 @@ export default App;
 const Split = styled.div`
   display: flex;
   height: 100vh;
+`;
+
+const RenderedWindow = styled.div`
+  background-color: #191324;
+  width: 35%;
+  padding: 20px;
+  color: #fff;
+  border-left: 1px solid #302b3a;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #82d8d8;
+  }
+  h1 {
+    border-bottom: solid 3px #e54b4b;
+    padding-bottom: 10px;
+  }
 `;
