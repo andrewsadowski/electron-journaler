@@ -36,15 +36,16 @@ class App extends Component {
   }
 
   loadAndReadFiles = directory => {
-    fs.readdir(directory[0], (err, files) => {
+    fs.readdir(directory, (err, files) => {
       const filteredFiles = files.filter(file =>
         file.includes('.md')
       );
-      const filePaths = filteredFiles.map(file => `${dir}/${file}`);
-
-      mainWindow.webContents.send('new-dir', filePaths, dir);
+      const filesData = filteredFiles.map(file => ({
+        path: `${directory}/${file}`
+      }));
     });
   };
+
   render() {
     return (
       <div className="App">
