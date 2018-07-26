@@ -12,7 +12,8 @@ const { ipcRenderer } = window.require('electron');
 
 class App extends Component {
   state = {
-    loadedFile: ''
+    loadedFile: '',
+    directory: ''
   };
   constructor() {
     super();
@@ -21,6 +22,12 @@ class App extends Component {
       console.log(fileContent);
       this.setState({
         loadedFile: fileContent
+      });
+    });
+
+    ipcRenderer.on('new-dir', (event, filePaths, dir) => {
+      this.setState({
+        directory: dir
       });
     });
   }
