@@ -30,34 +30,50 @@ class App extends Component {
       this.setState({
         directory: dir
       });
+      settings.set('directory', dir);
     });
   }
   render() {
     return (
       <div className="App">
         <Header>Journaler</Header>
-        <Split>
-          <CodeWindow>
-            <AceEditor
-              mode="markdown"
-              theme="dracula"
-              onChange={newContent => {
-                this.setState({ loadedFile: newContent });
-              }}
-              name="markdown_editor"
-              value={this.state.loadedFile}
-            />
-          </CodeWindow>
-          <RenderedWindow>
-            <Markdown>{this.state.loadedFile}</Markdown>
-          </RenderedWindow>
-        </Split>
+        {this.state.directory ? (
+          <Split>
+            <CodeWindow>
+              <AceEditor
+                mode="markdown"
+                theme="dracula"
+                onChange={newContent => {
+                  this.setState({ loadedFile: newContent });
+                }}
+                name="markdown_editor"
+                value={this.state.loadedFile}
+              />
+            </CodeWindow>
+            <RenderedWindow>
+              <Markdown>{this.state.loadedFile}</Markdown>
+            </RenderedWindow>
+          </Split>
+        ) : (
+          <LoadingMessage>
+            <h1>Press cmd or Ctrl+O to open a directory</h1>
+          </LoadingMessage>
+        )}
       </div>
     );
   }
 }
 
 export default App;
+
+const LoadingMessage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: #191324;
+  height: 100vh;
+`;
 
 const Header = styled.header`
   background-color: #191324;
