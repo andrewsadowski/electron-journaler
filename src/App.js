@@ -27,11 +27,12 @@ class App extends Component {
       });
     });
 
-    ipcRenderer.on('new-dir', (event, filePaths, dir) => {
+    ipcRenderer.on('new-dir', (event, directory) => {
       this.setState({
-        directory: dir
+        directory
       });
-      settings.set('directory', dir);
+      settings.set('directory', directory);
+      this.loadAndReadFiles(directory);
     });
   }
 
