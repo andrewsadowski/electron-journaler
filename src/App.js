@@ -9,6 +9,7 @@ import 'brace/theme/dracula';
 import './App.css';
 
 const { ipcRenderer } = window.require('electron');
+const settings = window.require('electron-settings');
 
 class App extends Component {
   state = {
