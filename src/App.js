@@ -14,7 +14,7 @@ const settings = window.require('electron-settings');
 class App extends Component {
   state = {
     loadedFile: '',
-    directory: ''
+    directory: settings.get('directory') || null
   };
   constructor() {
     super();
