@@ -10,6 +10,7 @@ import './App.css';
 
 const { ipcRenderer } = window.require('electron');
 const settings = window.require('electron-settings');
+const fs = window.require('fs');
 
 class App extends Component {
   state = {
@@ -33,6 +34,17 @@ class App extends Component {
       settings.set('directory', dir);
     });
   }
+
+  loadAndReadFiles = directory => {
+    fs.readdir(directory[0], (err, files) => {
+      const filteredFiles = files.filter(file =>
+        file.includes('.md')
+      );
+      const filePaths = filteredFiles.map(file => `${dir}/${file}`);
+
+      mainWindow.webContents.send('new-dir', filePaths, dir);
+    });
+  };
   render() {
     return (
       <div className="App">
