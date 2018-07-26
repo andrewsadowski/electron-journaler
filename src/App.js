@@ -43,6 +43,9 @@ class App extends Component {
       const filesData = filteredFiles.map(file => ({
         path: `${directory}/${file}`
       }));
+      this.setState({
+        filesData
+      });
     });
   };
 
