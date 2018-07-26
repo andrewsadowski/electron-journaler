@@ -194,5 +194,13 @@ function openDir() {
     properties: ['openDirectory']
   });
 
+  const dir = directory[0];
+
   if (!directory) return;
+  fs.readdir(directory[0], (err, files) => {
+    const filteredFiles = files.filter(file => file.includes('.md'));
+    const filePaths = filteredFiles.map(file => `${dir}/${file}`);
+
+    mainWindow.webContents.send('new-dir', filePaths, dir);
+  });
 }
