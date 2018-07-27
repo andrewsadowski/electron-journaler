@@ -193,9 +193,8 @@ function openDir() {
   const directory = dialog.showOpenDialog(mainWindow, {
     properties: ['openDirectory']
   });
-  
+
   if (!directory) return;
   const dir = directory[0];
   mainWindow.webContents.send('new-dir', dir);
-  });
 }
