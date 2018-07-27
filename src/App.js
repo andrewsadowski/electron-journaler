@@ -21,6 +21,12 @@ class App extends Component {
   constructor() {
     super();
 
+    //On load, check to see if dir exists, if so load
+    const directory = settings.get('directory');
+    if (directory) {
+      this.loadAndReadFiles(directory);
+    }
+
     ipcRenderer.on('new-file', (event, fileContent) => {
       console.log(fileContent);
       this.setState({
