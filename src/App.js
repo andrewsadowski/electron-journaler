@@ -15,6 +15,7 @@ const fs = window.require('fs');
 class App extends Component {
   state = {
     loadedFile: '',
+    filesData: [],
     directory: settings.get('directory') || null
   };
   constructor() {
@@ -56,6 +57,9 @@ class App extends Component {
         <Header>Journaler</Header>
         {this.state.directory ? (
           <Split>
+            <div>
+              {this.state.filesData.map(file => <h1>{file.path}</h1>)}
+            </div>
             <CodeWindow>
               <AceEditor
                 mode="markdown"
