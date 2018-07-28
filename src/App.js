@@ -57,6 +57,15 @@ class App extends Component {
     });
   };
 
+  loadFile = index => {
+    const { filesData } = this.state;
+
+    const content = fs.readFileSync(filesData[index].path).toString();
+    this.setState({
+      loadedFile: content
+    });
+  };
+
   render() {
     return (
       <div className="App">
