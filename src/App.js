@@ -61,6 +61,14 @@ class App extends Component {
     });
   };
 
+  changeFile = index => () => {
+    const { activeIndex } = this.state;
+    if (index !== activeIndex) {
+      this.saveFile();
+      this.loadFile(index);
+    }
+  };
+
   loadFile = index => {
     const { filesData } = this.state;
 
@@ -87,7 +95,7 @@ class App extends Component {
           <Split>
             <FilesWindow>
               {this.state.filesData.map((file, index) => (
-                <button onClick={() => this.loadFile(index)}>
+                <button onClick={this.changeFile(index)}>
                   {file.path}
                 </button>
               ))}
