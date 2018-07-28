@@ -17,7 +17,6 @@ function createWindow() {
   // and load the index.html of the app.
   mainWindow.loadURL('http://localhost:3000');
   require('devtron').install();
-  require('electron-react-devtools').install();
   //Create Menu
   const template = [
     {
