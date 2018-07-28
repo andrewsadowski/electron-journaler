@@ -72,13 +72,13 @@ class App extends Component {
         <Header>Journaler</Header>
         {this.state.directory ? (
           <Split>
-            <div>
+            <FilesWindow>
               {this.state.filesData.map((file, index) => (
                 <button onClick={() => this.loadFile(index)}>
                   {file.path}
                 </button>
               ))}
-            </div>
+            </FilesWindow>
             <CodeWindow>
               <AceEditor
                 mode="markdown"
@@ -138,6 +138,23 @@ const Header = styled.header`
 const Split = styled.div`
   display: flex;
   height: 100vh;
+`;
+
+const FilesWindow = styled.div`
+  background: #140f1d;
+  border-right: solid 1px #302b3a;
+  position: relative;
+  width: 20%;
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    pointer-events: none;
+    box-shadow: -10px 0 20px rgba(0, 0, 0, 0.3) inset;
+  }
 `;
 
 const CodeWindow = styled.div`
