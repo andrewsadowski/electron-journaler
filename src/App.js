@@ -68,12 +68,16 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <AppWrap className="App">
         <Header>Journaler</Header>
         {this.state.directory ? (
           <Split>
             <div>
-              {this.state.filesData.map(file => <h1>{file.path}</h1>)}
+              {this.state.filesData.map((file, index) => (
+                <button onClick={() => this.loadFile(index)}>
+                  {file.path}
+                </button>
+              ))}
             </div>
             <CodeWindow>
               <AceEditor
@@ -95,12 +99,16 @@ class App extends Component {
             <h1>Press cmd or Ctrl+O to open a directory</h1>
           </LoadingMessage>
         )}
-      </div>
+      </AppWrap>
     );
   }
 }
 
 export default App;
+
+const AppWrap = styled.div`
+  margin-top: 23px;
+`;
 
 const LoadingMessage = styled.div`
   display: flex;
