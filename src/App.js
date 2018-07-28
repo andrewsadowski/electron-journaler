@@ -28,11 +28,9 @@ class App extends Component {
       this.loadAndReadFiles(directory);
     }
 
-    ipcRenderer.on('new-file', (event, fileContent) => {
-      console.log(fileContent);
-      this.setState({
-        loadedFile: fileContent
-      });
+    ipcRenderer.on('save-file', (event, fileContent) => {
+      console.log('file saved');
+      this.saveFile();
     });
 
     ipcRenderer.on('new-dir', (event, directory) => {

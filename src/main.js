@@ -1,4 +1,5 @@
 // Modules to control application life and create native browser window
+
 const { app, BrowserWindow, dialog, Menu } = require('electron');
 const fs = require('fs');
 
@@ -27,6 +28,13 @@ function createWindow() {
           accelerator: 'CmdOrCtrl+O',
           click() {
             openDir();
+          }
+        },
+        {
+          label: 'Save File',
+          accelerator: 'CmdOrCtrl+S',
+          click() {
+            mainWindow.webContents.send('save-file');
           }
         }
       ]
