@@ -16,6 +16,7 @@ class App extends Component {
   state = {
     loadedFile: '',
     filesData: [],
+    activeIndex: 0,
     directory: settings.get('directory') || null
   };
   constructor() {
@@ -51,9 +52,12 @@ class App extends Component {
       const filesData = filteredFiles.map(file => ({
         path: `${directory}/${file}`
       }));
-      this.setState({
-        filesData
-      });
+      this.setState(
+        {
+          filesData
+        },
+        () => this.loadFile(0)
+      );
     });
   };
 
@@ -62,7 +66,16 @@ class App extends Component {
 
     const content = fs.readFileSync(filesData[index].path).toString();
     this.setState({
-      loadedFile: content
+      loadedFile: content,
+      activeIndex: index
+    });
+  };
+
+  saveFile = () => {
+    const { activeIndex, loadedFile, filesData } = this.state;
+    fs.writeFile(filesData[activeIndex].path, loadedFile, err => {
+      if (err) return console.log(err);
+      console.log('File was saved');
     });
   };
 
