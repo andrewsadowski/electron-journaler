@@ -229,6 +229,7 @@ const FileButton = styled.button`
   background: #191324;
   opacity: 0.4;
   color: white;
+  text-align: left;
   border: none;
   border-bottom: solid 1px #302b3a;
   transition: 0.3s ease all;
@@ -242,4 +243,12 @@ const FileButton = styled.button`
   opacity: 1;
   border-left: solid 4px #82d8d8;
   `};
+  .title {
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin: 0 0 5px;
+  }
+  .date {
+    margin: 0;
+  }
 `;
