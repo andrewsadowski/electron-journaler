@@ -227,4 +227,10 @@ const FileButton = styled.button`
     opacity: 1;
     border-left: solid 4px #82d8d8;
   }
+  ${({ active }) =>
+    active &&
+    `
+  opacity: 1;
+  border-left: solid 4px #82d8d8;
+  `};
 `;
