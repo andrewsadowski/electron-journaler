@@ -59,6 +59,17 @@ class App extends Component {
           title: file.substr(0, file.indexOf('_'))
         };
       });
+      //sort files
+      filesData.sort((a, b) => {
+        const aDate = new Date(a.date);
+        const bDate = new Date(b.date);
+
+        const aSec = aDate.getTime();
+        const bSec = bDate.getTime();
+
+        return bSec - aSec;
+      });
+
       this.setState(
         {
           filesData
