@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Markdown from 'markdown-to-jsx';
 import styled from 'styled-components';
+import dateFns from 'date-fns';
 import AceEditor from 'react-ace';
 import brace from 'brace';
 import 'brace/mode/markdown';
@@ -112,7 +113,7 @@ class App extends Component {
                   active={activeIndex === index}
                 >
                   <p className="title">{file.title}</p>
-                  <p className="date">{file.date}</p>
+                  <p className="date">{formatDate(file.date)}</p>
                 </FileButton>
               ))}
             </FilesWindow>
@@ -252,3 +253,6 @@ const FileButton = styled.button`
     margin: 0;
   }
 `;
+
+const formatDate = date =>
+  dateFns.format(new Date(date), 'MMMM Do YYYY');
