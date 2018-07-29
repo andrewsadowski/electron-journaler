@@ -86,16 +86,25 @@ class App extends Component {
   };
 
   render() {
+    const {
+      activeIndex,
+      filesData,
+      directory,
+      loadedFile
+    } = this.state;
     return (
       <AppWrap className="App">
         <Header>Journaler</Header>
         {this.state.directory ? (
           <Split>
             <FilesWindow>
-              {this.state.filesData.map((file, index) => (
-                <button onClick={this.changeFile(index)}>
+              {filesData.map((file, index) => (
+                <FileButton
+                  onClick={this.changeFile(index)}
+                  active={activeIndex === index}
+                >
                   {file.path}
-                </button>
+                </FileButton>
               ))}
             </FilesWindow>
             <CodeWindow>
@@ -106,11 +115,11 @@ class App extends Component {
                   this.setState({ loadedFile: newContent });
                 }}
                 name="markdown_editor"
-                value={this.state.loadedFile}
+                value={loadedFile}
               />
             </CodeWindow>
             <RenderedWindow>
-              <Markdown>{this.state.loadedFile}</Markdown>
+              <Markdown>{loadedFile}</Markdown>
             </RenderedWindow>
           </Split>
         ) : (
@@ -202,5 +211,20 @@ const RenderedWindow = styled.div`
   }
   a {
     color: #e54b4b;
+  }
+`;
+
+const FileButton = styled.button`
+  padding: 10px;
+  width: 100%;
+  background: #191324;
+  opacity: 0.4;
+  color: white;
+  border: none;
+  border-bottom: solid 1px #302b3a;
+  transition: 0.3s ease all;
+  &:hover {
+    opacity: 1;
+    border-left: solid 4px #82d8d8;
   }
 `;
