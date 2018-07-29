@@ -118,6 +118,7 @@ class App extends Component {
         {this.state.directory ? (
           <Split>
             <FilesWindow>
+              <Button>+ New Entry</Button>
               {filesData.map((file, index) => (
                 <FileButton
                   onClick={this.changeFile(index)}
@@ -262,6 +263,22 @@ const FileButton = styled.button`
   }
   .date {
     margin: 0;
+  }
+`;
+
+const Button = styled.button`
+  background: transparent;
+  color: white;
+  display: block;
+  border: solid 1px #82b8d8;
+  border-radius: 4px;
+  margin: 1rem auto;
+  font-size: 1rem;
+  transition: 0.3 ease all;
+  padding: 5px 10px;
+  &:hover {
+    background: #82d8d8;
+    color: #191324;
   }
 `;
 
