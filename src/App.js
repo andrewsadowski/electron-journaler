@@ -111,7 +111,8 @@ class App extends Component {
                   onClick={this.changeFile(index)}
                   active={activeIndex === index}
                 >
-                  {file.path}
+                  <p className="title">{file.title}</p>
+                  <p className="date">{file.date}</p>
                 </FileButton>
               ))}
             </FilesWindow>
