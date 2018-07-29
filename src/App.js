@@ -47,9 +47,17 @@ class App extends Component {
       const filteredFiles = files.filter(file =>
         file.includes('.md')
       );
-      const filesData = filteredFiles.map(file => ({
-        path: `${directory}/${file}`
-      }));
+      const filesData = filteredFiles.map(file => {
+        const date = file.substr(
+          file.indexOf('_') + 1,
+          file.indexOf('.') - file.indexOf('_') - 1
+        );
+        return {
+          date,
+          path: `${directory}/${file}`,
+          title: file.substr(0, file.indexOf('_'))
+        };
+      });
       this.setState(
         {
           filesData
