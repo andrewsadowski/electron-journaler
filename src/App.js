@@ -119,11 +119,12 @@ class App extends Component {
       filesData.unshift({
         path: filePath,
         date: fileDate,
-        loadedFile: ''
+        title: newEntryName
       });
       this.setState({
         newEntry: false,
         newEntryName: '',
+        loadedFile: '',
         filesData
       });
     });
