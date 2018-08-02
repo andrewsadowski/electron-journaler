@@ -109,15 +109,22 @@ class App extends Component {
 
   newFile = e => {
     e.preventDefault();
-    const { newEntryName, directory } = this.state;
+    const { newEntryName, directory, filesData } = this.state;
     const fileDate = dateFns.format(new Date(), 'MM-DD-YYYY');
     const filePath = `${directory}/${newEntryName}_${fileDate}.md`;
 
     fs.writeFile(filePath, '', err => {
       if (err) return console.log(err);
+
+      filesData.unshift({
+        path: filePath,
+        date: fileDate,
+        loadedFile: ''
+      });
       this.setState({
         newEntry: false,
-        newEntryName: ''
+        newEntryName: '',
+        filesData
       });
     });
   };
