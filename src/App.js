@@ -119,7 +119,16 @@ class App extends Component {
         {this.state.directory ? (
           <Split>
             <FilesWindow>
-              <Button>+ New Entry</Button>
+              <Button
+                onClick={() => this.setState({ newEntry: !newEntry })}
+              >
+                + New Entry
+              </Button>
+              {newEntry && (
+                <form onSubmit={() => null}>
+                  <input autoFocus type="text" />
+                </form>
+              )}
               {filesData.map((file, index) => (
                 <FileButton
                   onClick={this.changeFile(index)}
