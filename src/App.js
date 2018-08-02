@@ -18,6 +18,7 @@ class App extends Component {
     loadedFile: '',
     filesData: [],
     activeIndex: 0,
+    newEntry: false,
     directory: settings.get('directory') || null
   };
   constructor() {
