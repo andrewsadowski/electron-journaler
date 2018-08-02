@@ -106,12 +106,20 @@ class App extends Component {
     });
   };
 
+  newFile = e => {
+    e.preventDefault();
+
+    fs.writeFile();
+  };
+
   render() {
     const {
       activeIndex,
       filesData,
       directory,
-      loadedFile
+      loadedFile,
+      newEntry,
+      newEntryName
     } = this.state;
     return (
       <AppWrap className="App">
@@ -126,7 +134,7 @@ class App extends Component {
               </Button>
               {newEntry && (
                 <form onSubmit={() => null}>
-                  <input autoFocus type="text" />
+                  <input value={newEntryName} autoFocus type="text" />
                 </form>
               )}
               {filesData.map((file, index) => (
