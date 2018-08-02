@@ -19,6 +19,7 @@ class App extends Component {
     filesData: [],
     activeIndex: 0,
     newEntry: false,
+    newEntryName: '',
     directory: settings.get('directory') || null
   };
   constructor() {
@@ -108,8 +109,17 @@ class App extends Component {
 
   newFile = e => {
     e.preventDefault();
+    const { newEntryName, directory } = this.state;
+    const fileDate = dateFns.format(new Date(), 'MM-DD-YYYY');
+    const filePath = `${directory}/${newEntryName}_${fileDate}.md`;
 
-    fs.writeFile();
+    fs.writeFile(filePath, '', err => {
+      if (err) return console.log(err);
+      this.setState({
+        newEntry: false,
+        newEntryName: ''
+      });
+    });
   };
 
   render() {
@@ -133,8 +143,15 @@ class App extends Component {
                 + New Entry
               </Button>
               {newEntry && (
-                <form onSubmit={() => null}>
-                  <input value={newEntryName} autoFocus type="text" />
+                <form onSubmit={this.newFile}>
+                  <input
+                    value={newEntryName}
+                    onChange={e =>
+                      this.setState({ newEntryName: e.target.value })
+                    }
+                    autoFocus
+                    type="text"
+                  />
                 </form>
               )}
               {filesData.map((file, index) => (
