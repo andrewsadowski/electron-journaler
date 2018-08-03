@@ -4,7 +4,14 @@
   "version": "0.1.0",
   "private": true,
   "build": {
-    "appId": "com.admin.journaler"
+    "appId": "com.admin.journaler",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
   },
   "dependencies": {
     "date-fns": "^1.29.0",
