@@ -1,7 +1,11 @@
 {
   "name": "electron-journaler",
+  "author": "Andrew Sadowski",
   "version": "0.1.0",
   "private": true,
+  "build": {
+    "appId": "com.admin.journaler"
+  },
   "dependencies": {
     "date-fns": "^1.29.0",
     "devtron": "^1.4.0",
@@ -23,6 +27,7 @@
     "electron": "electron ."
   },
   "devDependencies": {
-    "electron": "^2.0.5"
+    "electron": "^2.0.5",
+    "electron-builder": "^20.26.1"
   }
 }
